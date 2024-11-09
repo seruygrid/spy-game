@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Гра Шпигун</title>
+</head>
+<body>
+    <h1>Гра Шпигун</h1>
+    {% if game_active %}
+        <p>Гра активна! Зробіть ваші дії.</p>
+        <form method="post" action="/guess/">
+            <label for="player">Гравець:</label>
+            <select name="player" id="player">
+                {% for player in ['Гравець 1', 'Гравець 2', 'Гравець 3', 'Гравець 4'] %}
+                    <option value="{{ player }}">{{ player }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <label for="guess">Припущення:</label>
+            <input type="text" name="guess" id="guess" required>
+            <br>
+            <button type="submit">Вгадати</button>
+        </form>
+        <form method="post" action="/end-game/">
+            <button type="submit">Завершити гру</button>
+        </form>
+    {% else %}
+        <p>Гра ще не почалась.</p>
+        <form method="post" action="/add-players-count/">
+            <button type="submit">Почати гру</button>
+        </form>
+    {% endif %}
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+</body>
+</html>

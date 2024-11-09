@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Етап запитань</title>
+</head>
+<body>
+    <h1>Етап запитань</h1>
+    <p><strong>{{ current_question[0] }}</strong> задає питання гравцю <strong>{{ current_question[1] }}</strong></p>
+
+    <form method="post" action="/next-question/">
+        <button type="submit">Перейти до наступного запитання</button>
+    </form>
+
+    {% if remaining_questions > 0 %}
+        <p>Залишилося запитань: {{ remaining_questions }}</p>
+    {% else %}
+        <p>Це останнє запитання в цьому раунді.</p>
+    {% endif %}
+</body>
+</html>

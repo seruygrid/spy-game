@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Інформація про персонажів</title>
+</head>
+<body>
+    <h1>Інформація про персонажів</h1>
+    <p>Кожен гравець має придумати собі ім'я та розповісти, як він пов'язаний з локацією</p>
+
+    <p>Першим починає: {{ player }}</p>
+    <form method="get" action="/question-stage/">
+        <button type="submit">Перейти на етап запитань</button>
+    </form>
+</body>
+</html>

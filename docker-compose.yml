@@ -1,0 +1,26 @@
+
+x-base:
+  &base-backend
+  stdin_open: true
+  tty: true
+  env_file:
+    - .env
+  volumes:
+    - .:/app
+
+services:
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  spy_game:
+    <<: *base-backend
+    depends_on:
+      - redis
+    build:
+      context: .
+    command: gunicorn -k uvicorn.workers.UvicornWorker -c gunicorn-conf.py --timeout 60 server:app
+    ports:
+        - "4000:4000"

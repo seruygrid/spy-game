@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Налаштування гри</title>
+</head>
+<body>
+    <h1>Налаштування гри "Шпигун"</h1>
+    <form method="post" action="/setup-game/">
+        <label for="player-count">Введіть кількість гравців:</label>
+        <input type="number" id="player-count" name="player_count" min="3" max="10" required>
+        <div id="players-input">
+            <h3>Введіть імена гравців:</h3>
+        </div>
+        <button type="submit">Почати гру</button>
+    </form>
+
+    <script>
+        document.getElementById('player-count').addEventListener('input', function() {
+            const playerCount = parseInt(this.value);
+            const playersInput = document.getElementById('players-input');
+            playersInput.innerHTML = '';
+
+            for (let i = 1; i <= playerCount; i++) {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.name = `player_${i}`;
+                input.placeholder = `Ім'я гравця ${i}`;
+                input.required = true;
+                playersInput.appendChild(input);
+                playersInput.appendChild(document.createElement('br'));
+            }
+        });
+    </script>
+</body>
+</html>

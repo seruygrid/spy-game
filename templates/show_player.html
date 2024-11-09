@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Інформація для гравця</title>
+    <script>
+        function showInfo() {
+            document.getElementById("player-info").style.display = "block";
+            document.getElementById("show-button").style.display = "none";
+            document.getElementById("hide-button").style.display = "inline";
+            document.getElementById("next-step-button").style.display = "none";
+        }
+
+        function hideInfo() {
+            document.getElementById("player-info").style.display = "none";
+            document.getElementById("show-button").style.display = "inline";
+            document.getElementById("hide-button").style.display = "none";
+            document.getElementById("next-step-button").style.display = "inline";
+        }
+    </script>
+</head>
+<body>
+    <h1>Інформація для гравця</h1>
+    <p><strong>Гравець: {{ player_info.player }}</strong></p>
+
+    <div id="player-info" style="display: none;">
+        <p>{{ player_info.info }}</p>
+    </div>
+
+    <button id="show-button" onclick="showInfo()">Показати інформацію</button>
+    <button id="hide-button" onclick="hideInfo()" style="display: none;">Сховати інформацію</button>
+
+    <form method="get" action="/show-next-player/">
+        <button type="submit" onclick="hideInfo()">Передати наступному гравцю</button>
+    </form>
+
+    <form method="get" action="/character-info/">
+        <button id="next-step-button">Перейти на наступний етап</button>
+    </form>
+</body>
+</html>
